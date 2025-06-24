@@ -26,12 +26,27 @@ class SkillResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Select::make('category')
-                    ->options(function () {
-                        return SkillCategory::pluck('name', 'name');
-                    })
+
+                // Updated category field
+                Forms\Components\Select::make('skill_category_id')
+                    ->label('Category')
+                    ->options(SkillCategory::pluck('name', 'id'))
                     ->searchable()
-                    ->required(),
+                    // ->required()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->unique(SkillCategory::class, 'name', ignoreRecord: true)
+                            ->required(),
+                        Forms\Components\TextInput::make('icon')
+                            ->required()
+                            ->default('fas fa-code')
+                            ->hint('Font Awesome icon class'),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        $category = SkillCategory::create($data);
+                        return $category->id;
+                    }),
+
                 Forms\Components\TextInput::make('proficiency')
                     ->numeric()
                     ->minValue(0)
@@ -48,8 +63,10 @@ class SkillResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('category'),
-                Tables\Columns\TextColumn::make('proficiency'),
+                Tables\Columns\TextColumn::make('category.name') // Updated to show category name
+                    ->label('Category'),
+                Tables\Columns\TextColumn::make('proficiency')
+                    ->suffix('%'),
                 Tables\Columns\TextColumn::make('sort_order'),
             ])
             ->filters([

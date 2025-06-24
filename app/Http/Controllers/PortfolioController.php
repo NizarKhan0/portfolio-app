@@ -12,26 +12,18 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        // Get all categories with their skills
-        $categories = SkillCategory::orderBy('sort_order')->get();
-
-        // Group skills by category
-        $skillsByCategory = [];
-        foreach ($categories as $category) {
-            $skillsByCategory[$category->name] = [
-                'icon' => $category->icon,
-                'skills' => Skill::where('category', $category->name)
-                    ->orderBy('sort_order')
-                    ->get()
-            ];
-        }
-
-        // dd($skillsByCategory);
+        // Get categories with their skills ordered by sort_order
+        $skillCategories = SkillCategory::with([
+            'skills' => function ($query) {
+                $query->orderBy('sort_order');
+            }
+        ])->orderBy('sort_order')->get();
 
         return view('frontend.index', [
             'profile' => Profile::first(),
             'experiences' => WorkExperience::orderBy('sort_order')->get(),
-            'skillsByCategory' => $skillsByCategory,
+            'skillCategories' => $skillCategories,
+
         ]);
     }
 }

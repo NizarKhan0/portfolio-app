@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->nullable();
-            $table->string('category')->nullable(); // Changed to string instead of enum
+            $table->foreignId('skill_category_id')->nullable()->constrained()->onDelete('cascade');
             $table->integer('proficiency')->nullable();
             $table->integer('sort_order')->default(0)->nullable();
             $table->timestamps();

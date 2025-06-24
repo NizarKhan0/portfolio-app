@@ -3,13 +3,13 @@
         <h2>Technical Skills</h2>
     </div>
     <div class="skills-container">
-        @foreach ($skillsByCategory as $categoryName => $categoryData)
+        @foreach ($skillCategories as $category)
             <div class="skill-category">
                 <h3>
-                    <i class="{{ $categoryData['icon'] }}"></i>
-                    {{ $categoryName }}
+                    <i class="{{ $category->icon }}"></i>
+                    {{ $category->name }}
                 </h3>
-                @foreach ($categoryData['skills'] as $skill)
+                @foreach($category->skills as $skill)
                     <div class="skill-item">
                         <div class="skill-header">
                             <span>{{ $skill->name }}</span>
@@ -26,14 +26,14 @@
     <!-- Mobile Skills Slider -->
     <div class="skills-slider">
         <div class="slider-container" id="sliderContainer">
-            @foreach ($skillsByCategory as $categoryName => $categoryData)
+            @foreach ($skillCategories as $category)
                 <div class="slider-item">
                     <div class="skill-category">
                         <h3>
-                            <i class="{{ $categoryData['icon'] }}"></i>
-                            {{ $categoryName }}
+                            <i class="{{ $category->icon }}"></i>
+                            {{ $category->name }}
                         </h3>
-                        @foreach ($categoryData['skills'] as $skill)
+                        @foreach($category->skills as $skill)
                             <div class="skill-item">
                                 <div class="skill-header">
                                     <span>{{ $skill->name }}</span>
