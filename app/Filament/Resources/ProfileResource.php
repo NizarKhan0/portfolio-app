@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProfileResource extends Resource
 {
     protected static ?string $model = Profile::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
@@ -28,12 +29,12 @@ class ProfileResource extends Resource
                 Forms\Components\TextInput::make('job_title')
                     ->required(),
                 Forms\Components\Textarea::make('description')
-                    ->required()
+                    // ->required()
                     ->rows(3),
                 Forms\Components\FileUpload::make('image')
                     ->directory('profile')
-                    ->image()
-                    ->required(),
+                    ->image(),
+                // ->required(),
                 Forms\Components\TextInput::make('location')
                     ->required(),
                 Forms\Components\TextInput::make('email')
@@ -57,8 +58,10 @@ class ProfileResource extends Resource
                 // Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Profile Picture')
-                    ->size(50) // Optional: size in pixels
-                    ->square(), // Optional: makes it round
+                    // ->disk('public') // or 'local', 's3', etc.
+                    // ->path('profile') // subfolder inside 'storage/app/public'
+                    ->size(50) // image size in px
+                    ->square(), // make it square
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime('d-M-Y'),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -69,6 +72,7 @@ class ProfileResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

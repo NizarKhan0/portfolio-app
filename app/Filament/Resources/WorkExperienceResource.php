@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class WorkExperienceResource extends Resource
 {
     protected static ?string $model = WorkExperience::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Form $form): Form
     {
@@ -48,15 +49,20 @@ class WorkExperienceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('job_title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('company')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('location')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
-                    ->date(),
+                    ->date()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('end_date')
-                    ->date(),
+                    ->date()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->sortable(),
             ])
@@ -65,6 +71,7 @@ class WorkExperienceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

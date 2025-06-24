@@ -28,10 +28,11 @@
                     <!-- Links -->
                     <div class="project-links">
                         @if ($project->demo_link)
-                            <a href="{{ $project->demo_link }}"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="{{ $project->demo_link }}" target="_blank"><i class="fas fa-external-link-alt"></i> Live
+                                Demo</a>
                         @endif
                         @if ($project->github_link)
-                            <a href="{{ $project->github_link }}"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="{{ $project->github_link }}" target="_blank"><i class="fab fa-github"></i> Source Code</a>
                         @endif
                     </div>
                 </div>

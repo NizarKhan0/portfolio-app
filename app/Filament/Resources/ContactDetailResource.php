@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ContactDetailResource extends Resource
 {
     protected static ?string $model = ContactDetail::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 6;
+    protected static ?string $navigationIcon = 'heroicon-o-square-3-stack-3d';
 
     public static function form(Form $form): Form
     {
@@ -43,19 +44,28 @@ class ContactDetailResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('location'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('phone'),
+                Tables\Columns\TextColumn::make('location')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime('d-M-Y'),
+                    ->dateTime('d-M-Y')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime('d-M-Y'),
+                    ->dateTime('d-M-Y')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

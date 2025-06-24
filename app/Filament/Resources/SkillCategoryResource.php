@@ -19,8 +19,9 @@ use App\Filament\Resources\SkillCategoryResource\RelationManagers;
 class SkillCategoryResource extends Resource
 {
     protected static ?string $model = SkillCategory::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 4;
+    protected static ?string $navigationIcon = 'heroicon-o-sparkles';
 
     public static function form(Form $form): Form
     {
@@ -43,12 +44,16 @@ class SkillCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('icon'),
                 Tables\Columns\TextColumn::make('skills_count')
                     ->counts('skills')
-                    ->label('Skills'),
-                Tables\Columns\TextColumn::make('sort_order'),
+                    ->label('Skills')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->sortable(),
             ])
             ->filters([
                 //

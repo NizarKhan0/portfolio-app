@@ -17,8 +17,9 @@ use App\Filament\Resources\ProjectResource\RelationManagers;
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Settings';
+    protected static ?int $navigationSort = 5;
+    protected static ?string $navigationIcon = 'heroicon-o-fire';
 
     public static function form(Form $form): Form
     {
@@ -57,20 +58,30 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('image'),
-                Tables\Columns\TextColumn::make('tech_stack'),
-                Tables\Columns\TextColumn::make('demo_link'),
-                Tables\Columns\TextColumn::make('github_link'),
-                Tables\Columns\TextColumn::make('featured'),
-                Tables\Columns\TextColumn::make('sort_order'),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->wrap()
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->square()
+                    ->defaultImageUrl(url('storage/default.jpg'))
+                    ->size(50),
+                Tables\Columns\TextColumn::make('tech_stack')
+                    ->searchable(),
+                // Tables\Columns\TextColumn::make('demo_link'),
+                // Tables\Columns\TextColumn::make('github_link'),
+                // Tables\Columns\TextColumn::make('featured'),
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

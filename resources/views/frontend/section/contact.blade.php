@@ -38,19 +38,35 @@
         </div>
         <div class="contact-form">
             <form id="contactForm">
+                @csrf
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" id="name" placeholder="Your Name" autocomplete="off" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" id="email" placeholder="Your Email" autocomplete="off" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" id="message" autocomplete="off" required></textarea>
                 </div>
-                <div class="form-group">
-                    <textarea placeholder="Your Message" required></textarea>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <div id="formErrors" style="color: red; font-size: 14px; margin-bottom: 10px;"></div>
+
+                    <button type="submit" onclick="sendEmail(event)"
+                        style="width: 100%; background-color: #8a2be2; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+                        Send Message
+                    </button>
+
+                    <div style="display: flex; align-items: center; margin-top: 15px;">
+                        <input type="checkbox" id="securityCheckbox" required
+                            style="margin-right: 8px; width: 16px; height: 16px; cursor: pointer;">
+                        <label for="securityCheckbox" style="color: white; font-size: 14px; cursor: pointer;">
+                            I agree to the terms and conditions
+                        </label>
+                    </div>
                 </div>
-                <button type="submit" class="btn">Send Message</button>
+
+
             </form>
         </div>
     </div>

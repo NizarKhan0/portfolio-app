@@ -9,4 +9,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateWorkExperience extends CreateRecord
 {
     protected static string $resource = WorkExperienceResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
