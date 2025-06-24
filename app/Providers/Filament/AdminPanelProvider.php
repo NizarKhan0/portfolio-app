@@ -53,6 +53,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->sidebarWidth('14rem')
+            ->sidebarCollapsibleOnDesktop()
+            ->collapsibleNavigationGroups(false)
+            ->brandName('Portfolio CMS');
     }
 }
