@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique()->nullable();
             $table->foreignId('skill_category_id')->nullable()->constrained()->onDelete('cascade');
             $table->integer('proficiency')->nullable();
+            // $table->string('color')->default('#6c757d')->nullable(); // For frontend styling
             $table->integer('sort_order')->default(0)->nullable();
             $table->timestamps();
         });

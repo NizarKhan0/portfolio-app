@@ -46,7 +46,8 @@ class SkillResource extends Resource
                         $category = SkillCategory::create($data);
                         return $category->id;
                     }),
-
+                // Forms\Components\ColorPicker::make('color')
+                //     ->required(),
                 Forms\Components\TextInput::make('proficiency')
                     ->numeric()
                     ->minValue(0)
@@ -65,6 +66,9 @@ class SkillResource extends Resource
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('category.name') // Updated to show category name
                     ->label('Category'),
+                // Tables\Columns\ColorColumn::make('color')
+                //     ->copyable()
+                //     ->copyMessage('Color copied!'),
                 Tables\Columns\TextColumn::make('proficiency')
                     ->suffix('%'),
                 Tables\Columns\TextColumn::make('sort_order'),
