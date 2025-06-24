@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Models\WorkExperience;
 
 class PortfolioController extends Controller
 {
@@ -11,6 +12,7 @@ class PortfolioController extends Controller
     {
         return view('frontend.index',[
             'profile' => Profile::first(),
+            'experiences' => WorkExperience::orderBy('sort_order')->get(),
         ]);
     }
 }
