@@ -7,7 +7,7 @@
         @forelse ($projects as $project)
             <div class="project-card">
                 <div class="project-image">
-                    <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('storage/default.jpg') }}"
+                    <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('default.jpg') }}"
                         alt="{{ $project->title ?? 'N/A' }}">
                 </div>
                 <div class="project-content">

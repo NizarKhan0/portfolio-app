@@ -32,6 +32,7 @@ class ProfileResource extends Resource
                     // ->required()
                     ->rows(3),
                 Forms\Components\FileUpload::make('image')
+                    ->disk('public')
                     ->directory('profile')
                     ->image(),
                 // ->required(),

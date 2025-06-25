@@ -66,7 +66,7 @@ class ProjectResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->square()
-                    ->defaultImageUrl(url('storage/default.jpg'))
+                    ->defaultImageUrl(url('default.jpg'))
                     ->size(50),
                 Tables\Columns\TextColumn::make('tech_stack')
                     ->searchable(),

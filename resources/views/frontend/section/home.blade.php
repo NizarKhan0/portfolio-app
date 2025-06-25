@@ -7,6 +7,10 @@
         $cleanPhone = $phone ? preg_replace('/[^0-9]/', '', $phone) : null;
         $whatsappLink = $cleanPhone ? 'https://wa.me/6' . $cleanPhone : null;
      @endphp
+    <div class="hero-image">
+        <img src="{{ isset($profile) && $profile->image ? asset('storage/' . $profile->image) : asset('default.jpg') }}"
+            alt="{{ $profile->title ?? 'N/A' }}">
+    </div>
     <div class="hero-text">
         <h1>
             Hi, I'm <span>{{ $profile->name ?? 'N/A' }}</span><br>
