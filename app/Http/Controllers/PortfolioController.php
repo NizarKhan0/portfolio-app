@@ -15,6 +15,10 @@ class PortfolioController extends Controller
 {
     public function index()
     {
+        // thiis is for testing just take this model to view blade use @php @endphp
+        //   $profile = Profile::first();
+        //   $contact = ContactDetail::first();
+
         // Get categories with their skills ordered by sort_order
         $skillCategories = SkillCategory::with([
             'skills' => function ($query) {
@@ -35,7 +39,7 @@ class PortfolioController extends Controller
             'experiences' => WorkExperience::orderBy('sort_order')->get(),
             'skillCategories' => $skillCategories,
             'projects' => Project::orderBy('sort_order')->get(),
-            'contacts' => ContactDetail::first()->get(),
+            'contact' => ContactDetail::first(),
             'footers' => $footer,
         ]);
     }

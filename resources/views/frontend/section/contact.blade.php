@@ -5,37 +5,50 @@
     <div class="contact-container">
         <div class="contact-info">
 
-            @foreach ($contacts as $contact)
+            @php
+                use App\Models\ContactDetail;
+                $contact = ContactDetail::first();
+            @endphp
+
+            @if ($contact)
                 <div class="contact-item">
                     <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="contact-text">
                         <h4>Location</h4>
-                        <p>{{ $contact->location }}</p>
+                        <p>{{ $contact->location ?? 'N/A' }}</p>
                     </div>
                 </div>
+
                 <div class="contact-item">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-text">
                         <h4>Email</h4>
-                        <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                        <a href="mailto:{{ $contact->email }}">{{ $contact->email ?? 'N/A' }}</a>
                     </div>
                 </div>
+
                 <div class="contact-item">
                     <div class="contact-icon">
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="contact-text">
                         <h4>Phone</h4>
-                        <a href="https://wa.me/6{{ $contact->phone }}">{{ $contact->phone }}</a>
+                        <a href="https://wa.me/6{{ preg_replace('/[^0-9]/', '', $contact->phone) }}">
+                            {{ $contact->phone ?? 'N/A' }}
+                        </a>
                     </div>
                 </div>
-            @endforeach
+            @else
+                <p style="color: red;">Contact information not available.</p>
+            @endif
 
         </div>
+
+        <!-- Contact Form -->
         <div class="contact-form">
             <form id="contactForm">
                 @csrf
@@ -65,8 +78,6 @@
                         </label>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>
