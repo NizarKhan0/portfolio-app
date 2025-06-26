@@ -24,19 +24,14 @@ class ContactDetailResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('location')
-                ->required(),
+                Forms\Components\TextInput::make('location'),
             Forms\Components\TextInput::make('email')
-                ->email()
-                ->required(),
+                ->email(),
             Forms\Components\TextInput::make('phone')
-                ->tel()
-                ->required(),
+                ->tel(),
             Forms\Components\TextInput::make('url')
-                ->url()
-                ->required(),
-            Forms\Components\TextInput::make('icon')
-                ->required(),
+                ->url(),
+            Forms\Components\TextInput::make('icon'),
             ]);
     }
 

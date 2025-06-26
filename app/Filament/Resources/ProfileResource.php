@@ -32,6 +32,7 @@ class ProfileResource extends Resource
                     // ->required()
                     ->rows(3),
                 Forms\Components\FileUpload::make('image')
+                    // ini dari path storage/app/public
                     ->disk('public')
                     ->directory('profile')
                     ->image(),
@@ -59,6 +60,7 @@ class ProfileResource extends Resource
                 // Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Profile Picture')
+                    ->defaultImageUrl(url('default.jpg'))
                     // ->disk('public') // or 'local', 's3', etc.
                     // ->path('profile') // subfolder inside 'storage/app/public'
                     ->size(50) // image size in px

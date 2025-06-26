@@ -17,7 +17,7 @@
                     </div>
                     <div class="contact-text">
                         <h4>Location</h4>
-                        <p>{{ $contact->location ?? 'N/A' }}</p>
+                        <p>{{ $contact->location ?? '' }}</p>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                     </div>
                     <div class="contact-text">
                         <h4>Email</h4>
-                        <a href="mailto:{{ $contact->email }}">{{ $contact->email ?? 'N/A' }}</a>
+                        <a href="mailto:{{ $contact->email }}">{{ $contact->email ?? '' }}</a>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                     <div class="contact-text">
                         <h4>Phone</h4>
                         <a href="https://wa.me/6{{ preg_replace('/[^0-9]/', '', $contact->phone) }}">
-                            {{ $contact->phone ?? 'N/A' }}
+                            {{ $contact->phone ?? '' }}
                         </a>
                     </div>
                 </div>

@@ -26,6 +26,7 @@ class SkillResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->unique(ignoreRecord: true)
                     ->required(),
 
                 // Updated category field

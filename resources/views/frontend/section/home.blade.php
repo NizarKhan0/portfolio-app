@@ -9,14 +9,14 @@
      @endphp
     <div class="hero-image">
         <img src="{{ isset($profile) && $profile->image ? asset('storage/' . $profile->image) : asset('default.jpg') }}"
-            alt="{{ $profile->title ?? 'N/A' }}">
+            alt="{{ $profile->name ?? '' }}">
     </div>
     <div class="hero-text">
         <h1>
-            Hi, I'm <span>{{ $profile->name ?? 'N/A' }}</span><br>
-            {{ $profile->job_title ?? 'N/A' }}
+            Hi, I'm <span>{{ $profile->name ?? '' }}</span><br>
+            {{ $profile->job_title ?? '' }}
         </h1>
-        <p>{{ $profile->description ?? 'N/A' }}</p>
+        <p>{{ $profile->description ?? '' }}</p>
 
         <div class="btn-container">
             <a href="#projects" class="btn">View Projects</a>

@@ -8,12 +8,12 @@
             <div class="skill-category">
                 <h3>
                     <i class="{{ $category->icon }}"></i>
-                    {{ $category->name ?? 'N/A' }}
+                    {{ $category->name ?? '' }}
                 </h3>
                 @forelse($category->skills as $skill)
                     <div class="skill-item">
                         <div class="skill-header">
-                            <span>{{ $skill->name ?? 'N/A' }}</span>
+                            <span>{{ $skill->name ?? '' }}</span>
                             <span>{{ $skill->proficiency ?? '0' }}%</span>
                         </div>
                         <div class="skill-bar">
@@ -39,12 +39,12 @@
                     <div class="skill-category">
                         <h3>
                             <i class="{{ $category->icon }}"></i>
-                            {{ $category->name ?? 'N/A' }}
+                            {{ $category->name ?? '' }}
                         </h3>
                         @forelse($category->skills as $skill)
                             <div class="skill-item">
                                 <div class="skill-header">
-                                    <span>{{ $skill->name ?? 'N/A' }}</span>
+                                    <span>{{ $skill->name ?? '' }}</span>
                                     <span>{{ $skill->proficiency ?? '0' }}%</span>
                                 </div>
                                 <div class="skill-bar">

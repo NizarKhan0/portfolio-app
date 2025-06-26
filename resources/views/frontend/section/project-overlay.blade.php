@@ -10,23 +10,23 @@
         @forelse ($projects as $project)
             <div class="project-card">
                 <div class="project-image">
-                    <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('storage/default.jpg') }}"
-                         alt="{{ $project->title ?? 'N/A' }}">
+                    <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('default.jpg') }}"
+                        alt="{{ $project->title ?? '' }}">
                 </div>
                 <div class="project-content">
-                    <h3>{{ $project->title ?? 'N/A' }}</h3>
-                    <p>{{ $project->description ?? 'N/A' }}</p>
+                    <h3>{{ $project->title ?? '' }}</h3>
+                    <p>{{ $project->description ?? '' }}</p>
 
                     <!-- Dynamic tech stack -->
                     <div class="tech-stack">
                         @if (!empty($project->skills) && count($project->skills) > 0)
                             @foreach ($project->skills as $skill)
                                 <span class="tech-item">
-                                    {{ $skill->name ?? 'N/A' }}
+                                    {{ $skill->name ?? '' }}
                                 </span>
                             @endforeach
                         @else
-                            <span class="tech-item">N/A</span>
+                            <span class="tech-item">No Tech Stack</span>
                         @endif
                     </div>
 
