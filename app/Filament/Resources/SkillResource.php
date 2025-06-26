@@ -82,7 +82,12 @@ class SkillResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                //filter by category
+                Tables\Filters\SelectFilter::make('skill_category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->preload()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
