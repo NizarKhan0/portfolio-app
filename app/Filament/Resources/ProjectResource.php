@@ -48,7 +48,7 @@ class ProjectResource extends Resource
 
                 // Links & metadata
                 Forms\Components\TextInput::make('demo_link')->url(),
-                Forms\Components\TextInput::make('github_link')->url(),
+                Forms\Components\TextInput::make('github_link'),
                 Forms\Components\Toggle::make('featured'),
                 Forms\Components\TextInput::make('sort_order')->numeric()->default(0),
             ]);
@@ -68,8 +68,6 @@ class ProjectResource extends Resource
                     ->square()
                     ->defaultImageUrl(url('default.jpg'))
                     ->size(50),
-                Tables\Columns\TextColumn::make('tech_stack')
-                    ->searchable(),
                 // Tables\Columns\TextColumn::make('demo_link'),
                 // Tables\Columns\TextColumn::make('github_link'),
                 // Tables\Columns\TextColumn::make('featured'),

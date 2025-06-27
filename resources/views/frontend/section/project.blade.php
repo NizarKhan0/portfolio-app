@@ -3,8 +3,9 @@
         <h2>Featured Projects</h2>
     </div>
     <div class="projects-grid">
-        <!-- Initial 3 projects -->
-        @forelse ($projects as $project)
+        <!-- Initial 3 projects can custom condition from this blade view what
+             we want the impoertant is have pass the variable from controller  -->
+        @forelse ($projects->where('featured', 1)->take(3) as $project)
             <div class="project-card">
                 <div class="project-image">
                     <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('default.jpg') }}"
