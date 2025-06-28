@@ -64,6 +64,7 @@ class SkillResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('sort_order')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
