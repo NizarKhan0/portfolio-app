@@ -9,6 +9,7 @@
                 <div class="timeline-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
                     <div class="timeline-content">
                         <h3>{{ $exp->job_title ?? '' }}</h3>
+                        <h4 class="text">{{ $exp->company ?? '' }}</h4>
                         <h4 class="text">{{ $exp->location ?? '' }}</h4>
                         <div class="date">
                             <i class="far fa-calendar-alt"></i>
